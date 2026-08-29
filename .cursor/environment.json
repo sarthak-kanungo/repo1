@@ -1,0 +1,17 @@
+{
+  "name": "repo1",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "dev-server",
+      "command": "npm run dev",
+      "description": "Runs the task-manager dev server with auto-reload on http://localhost:3000."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 3000
+    }
+  ]
+}
