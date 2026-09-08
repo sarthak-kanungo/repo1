@@ -1,0 +1,641 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="hrs-services-er" name="HRS_SERVICES — relational diagram (sample schema)">
+    <mxGraphModel dx="1420" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="HRS_SERVICES — relational diagram (sample schema)" style="text;html=1;fontSize=22;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="24" width="900" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="band0" value="Level 0 — referenced only (no outgoing FK)" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="86" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="band1" value="Level 1 — depends on level 0" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="86" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="band2" value="Level 2 — depends on level 1" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="86" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="band3" value="Level 3 — depends on level 2" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="86" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="band4" value="Level 4 — depends on level 3" style="text;html=1;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;fillColor=#f5f5f5;strokeColor=#b3b3b3;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="86" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t0" value="dbo.Department" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="246" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t0r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t0">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t0r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t0r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t0r0c1" value="DepartmentId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t0r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t0r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t0">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t0r1c0" value="U" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#666666;fontSize=10;" vertex="1" parent="t0r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t0r1c1" value="DepartmentCode  :  nvarchar(20)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t0r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1" value="dbo.Designation" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="550" y="140" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t1r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t1">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t1r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t1r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1r0c1" value="DesignationId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t1r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t1">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t1r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t1r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1r1c1" value="DepartmentId  :  int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t1r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2" value="dbo.Employee" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="140" width="300" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="t2r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t2">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t2r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t2r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r0c1" value="EmployeeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t2r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t2">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t2r1c0" value="U" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#666666;fontSize=10;" vertex="1" parent="t2r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r1c1" value="EmployeeCode  :  nvarchar(20)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t2r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t2">
+          <mxGeometry y="86" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t2r2c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t2r2">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r2c1" value="DepartmentId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t2r2">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r3" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t2">
+          <mxGeometry y="112" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t2r3c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t2r3">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r3c1" value="DesignationId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t2r3">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r4" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t2">
+          <mxGeometry y="138" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t2r4c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t2r4">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t2r4c1" value="ManagerId  :  int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t2r4">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t3" value="dbo.EmployeeAddress" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="404" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t3r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t3">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t3r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t3r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t3r0c1" value="AddressId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t3r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t3r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t3">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t3r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t3r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t3r1c1" value="EmployeeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t3r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t4" value="dbo.LeaveType" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="378" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t4r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t4">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t4r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t4r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t4r0c1" value="LeaveTypeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t4r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5" value="dbo.LeaveRequest" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="536" width="300" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="t5r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t5">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t5r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t5r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5r0c1" value="LeaveRequestId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t5r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t5">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t5r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t5r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5r1c1" value="EmployeeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t5r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t5">
+          <mxGeometry y="86" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t5r2c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t5r2">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t5r2c1" value="LeaveTypeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t5r2">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6" value="dbo.LeaveApproval" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="140" width="300" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="t6r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t6">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t6r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t6r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6r0c1" value="LeaveApprovalId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t6r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t6">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t6r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t6r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6r1c1" value="LeaveRequestId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t6r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t6">
+          <mxGeometry y="86" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t6r2c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t6r2">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t6r2c1" value="ApproverId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t6r2">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t7" value="dbo.Payroll" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="694" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t7r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t7">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t7r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t7r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t7r0c1" value="PayrollId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t7r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t7r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t7">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t7r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t7r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t7r1c1" value="EmployeeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t7r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8" value="dbo.PayrollComponent" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="298" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t8r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t8">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t8r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t8r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8r0c1" value="ComponentId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t8r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t8">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t8r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t8r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t8r1c1" value="PayrollId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t8r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t9" value="dbo.Attendance" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="272" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t9r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t9">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t9r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t9r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t9r0c1" value="AttendanceId  :  bigint  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t9r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t9r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t9">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t9r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t9r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t9r1c1" value="EmployeeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t9r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10" value="dbo.ServiceRequest" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="826" width="300" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="t10r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t10">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t10r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t10r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10r0c1" value="ServiceRequestId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t10r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t10">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t10r1c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t10r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10r1c1" value="CategoryId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t10r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t10">
+          <mxGeometry y="86" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t10r2c0" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t10r2">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t10r2c1" value="RaisedByEmployeeId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t10r2">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t11" value="dbo.ServiceCategory" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="484" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t11r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t11">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t11r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t11r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t11r0c1" value="CategoryId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t11r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t12" value="dbo.AppUser" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="140" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t12r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t12">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t12r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t12r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t12r0c1" value="UserId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t12r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t12r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t12">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t12r1c0" value="FK,U" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#6c8ebf;fontSize=10;" vertex="1" parent="t12r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t12r1c1" value="EmployeeId  :  int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t12r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t13" value="dbo.AppRole" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="140" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t13r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t13">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t13r0c0" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t13r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t13r0c1" value="RoleId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t13r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t14" value="dbo.UserRole" style="shape=table;startSize=34;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=1;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;verticalAlign=middle;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="430" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="t14r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t14">
+          <mxGeometry y="34" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t14r0c0" value="PK,FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t14r0">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t14r0c1" value="UserId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t14r0">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t14r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" vertex="1" parent="t14">
+          <mxGeometry y="60" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t14r1c0" value="PK,FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=center;fontStyle=1;fontColor=#b85450;fontSize=10;" vertex="1" parent="t14r1">
+          <mxGeometry x="0" width="40" height="26" as="geometry">
+            <mxRectangle width="40" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t14r1c1" value="RoleId  :  int  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;html=1;fontSize=11;align=left;spacingLeft=6;" vertex="1" parent="t14r1">
+          <mxGeometry x="40" width="260" height="26" as="geometry">
+            <mxRectangle width="260" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1" value="1. FK_Designation_Department" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t1r1" target="t0r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1l" value="DepartmentId → DepartmentId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e1">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="2. FK_Employee_Department" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t2r2" target="t0r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2l" value="DepartmentId → DepartmentId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e2">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="3. FK_Employee_Designation" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t2r3" target="t1r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3l" value="DesignationId → DesignationId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e3">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="4. FK_Employee_Manager" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t2r4" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4l" value="ManagerId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e4">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="5. FK_AppUser_Employee" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t12r1" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5l" value="EmployeeId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e5">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" value="6. FK_Attendance_Employee" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t9r1" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6l" value="EmployeeId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e6">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="7. FK_EmployeeAddress_Employee" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t3r1" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7l" value="EmployeeId → EmployeeId  [ON DELETE CASCADE]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e7">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" value="8. FK_LeaveRequest_LeaveType" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t5r2" target="t4r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8l" value="LeaveTypeId → LeaveTypeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e8">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" value="9. FK_LeaveRequest_Employee" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t5r1" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9l" value="EmployeeId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e9">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" value="10. FK_Payroll_Employee" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t7r1" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10l" value="EmployeeId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e10">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" value="11. FK_ServiceRequest_Category" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t10r1" target="t11r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11l" value="CategoryId → CategoryId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e11">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" value="12. FK_ServiceRequest_Employee" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t10r2" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12l" value="RaisedByEmployeeId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e12">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" value="13. FK_LeaveApproval_Approver" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t6r2" target="t2r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13l" value="ApproverId → EmployeeId" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e13">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" value="14. FK_LeaveApproval_LeaveRequest" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t6r1" target="t5r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14l" value="LeaveRequestId → LeaveRequestId  [ON DELETE CASCADE]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e14">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" value="15. FK_PayrollComponent_Payroll" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t8r1" target="t7r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15l" value="PayrollId → PayrollId  [ON DELETE CASCADE]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e15">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" value="16. FK_UserRole_AppRole" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t14r1" target="t13r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16l" value="RoleId → RoleId  [ON DELETE CASCADE]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e16">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e17" value="17. FK_UserRole_AppUser" style="edgeStyle=entityRelationEdgeStyle;rounded=1;html=1;fontSize=11;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;strokeColor=#4d4d4d;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="t14r0" target="t12r0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17l" value="UserId → UserId  [ON DELETE CASCADE]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;fontSize=9;fontColor=#666666;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e17">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&#10;PK = primary key&#10;FK = foreign key&#10;U = unique key&#10;REF = referenced by an FK&#10;&#10;Crow&#39;s foot = many (child) &#183; bar = one (parent)&#10;Edge number = relation sequence, in dependency order&#10;Bands left&#8594;right = FK dependency levels&#10;Dashed red edge = FK that closes a cycle&#10;Only relational columns are shown." style="text;html=1;align=left;verticalAlign=top;fontSize=12;spacing=8;fillColor=#ffffff;strokeColor=#999999;rounded=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="2510" y="140" width="290" height="210" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
