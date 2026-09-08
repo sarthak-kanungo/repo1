@@ -1,0 +1,11 @@
+dbo	Branch
+dbo	Supplier
+dbo	Category
+dbo	Item
+dbo	Store
+dbo	Stock
+dbo	PurchaseOrder
+dbo	PurchaseOrderItem
+dbo	IssueNote
+dbo	IssueNoteItem
+dbo	AuditLog

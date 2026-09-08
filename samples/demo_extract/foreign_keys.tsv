@@ -1,0 +1,13 @@
+FK_Category_Parent	dbo	Category	ParentCategoryId	dbo	Category	CategoryId	1	NO_ACTION	NO_ACTION	0
+FK_Item_Category	dbo	Item	CategoryId	dbo	Category	CategoryId	1	NO_ACTION	NO_ACTION	0
+FK_Item_Supplier	dbo	Item	SupplierId	dbo	Supplier	SupplierId	1	SET_NULL	NO_ACTION	0
+FK_Store_Branch	dbo	Store	BranchId	dbo	Branch	BranchId	1	NO_ACTION	NO_ACTION	0
+FK_Stock_Item	dbo	Stock	ItemId	dbo	Item	ItemId	1	CASCADE	NO_ACTION	0
+FK_Stock_Store	dbo	Stock	StoreId	dbo	Store	StoreId	1	NO_ACTION	NO_ACTION	0
+FK_PO_Supplier	dbo	PurchaseOrder	SupplierId	dbo	Supplier	SupplierId	1	NO_ACTION	NO_ACTION	0
+FK_PO_Branch	dbo	PurchaseOrder	BranchId	dbo	Branch	BranchId	1	NO_ACTION	NO_ACTION	0
+FK_POI_PO	dbo	PurchaseOrderItem	PoId	dbo	PurchaseOrder	PoId	1	CASCADE	NO_ACTION	0
+FK_POI_Item	dbo	PurchaseOrderItem	ItemId	dbo	Item	ItemId	1	NO_ACTION	NO_ACTION	0
+FK_Issue_Store	dbo	IssueNote	StoreId	dbo	Store	StoreId	1	NO_ACTION	NO_ACTION	0
+FK_IssueItem_Issue	dbo	IssueNoteItem	IssueId	dbo	IssueNote	IssueId	1	CASCADE	NO_ACTION	0
+FK_IssueItem_Item	dbo	IssueNoteItem	ItemId	dbo	Item	ItemId	1	NO_ACTION	NO_ACTION	0
