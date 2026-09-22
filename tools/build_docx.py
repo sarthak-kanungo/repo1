@@ -2,7 +2,7 @@
 """Build the JBM DMS Service Mobile App user manual as a .docx, laying every
 screen out in the fig-1 style: blue step heading, square bullets, a blue band
 and a fully annotated screenshot."""
-import os, sys
+import os, sys, json
 sys.path.insert(0, "lib")
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor, Emu
@@ -12,7 +12,10 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
+import shapes
 import spec_a, spec_b, spec_c
+
+LAYOUTS = json.load(open("figs/layouts.json"))
 
 STEPS = spec_a.STEPS + spec_b.STEPS + spec_c.STEPS
 
@@ -21,7 +24,8 @@ BAND      = "4E81BD"                        # fig-1 band fill
 DARK      = RGBColor(0x20, 0x20, 0x20)
 GREY      = RGBColor(0x60, 0x60, 0x60)
 NAVY      = RGBColor(0x0F, 0x3D, 0x66)
-FIG_W     = Inches(6.85)
+FIG_W_IN  = 8.27 - 2 * 0.62        # full text column on A4
+FIG_W     = Inches(FIG_W_IN)
 FONT      = "Arial"
 
 ROMAN = [(1000,"m"),(900,"cm"),(500,"d"),(400,"cd"),(100,"c"),(90,"xc"),
@@ -118,9 +122,30 @@ def band(doc, text):
     return p
 
 
-def figure(doc, path, caption, width=FIG_W):
-    p = para(doc, 2, 2, align=WD_ALIGN_PARAGRAPH.CENTER, keep=True)
-    p.add_run().add_picture(path, width=width)
+def figure(doc, path, caption, lay, width_in=FIG_W_IN):
+    """Place the bare device shot, then lay the callouts over it as Word shapes.
+
+    Everything a reader may want to change - the callout wording, the size of a
+    box, whether an arrow is there at all - stays a separate, editable shape."""
+    CW, _CH = lay["canvas"]
+    PW, _PH = lay["phone"]
+    scale = width_in / CW * shapes.EMU      # canvas pixels -> EMU
+    p = para(doc, 0, 2, align=WD_ALIGN_PARAGRAPH.CENTER, keep=True)
+    p.add_run().add_picture(path, width=Inches(PW * width_in / CW))
+    for it in lay["items"]:
+        tx, ty, tw, th = it["target"]
+        ax, ay, px, py = it["arrow"]
+        bx, by, bw, bh = it["box"]
+        # a little slack, so Word never re-wraps the text the layout measured;
+        # the box grows away from the arrow, keeping the leader on its edge
+        grow = bw * 0.07
+        if it["side"] == "L":
+            bx -= grow
+        bw += grow
+        shapes.outline(p, tx * scale, ty * scale, tw * scale, th * scale, line_pt=1.0)
+        shapes.arrow(p, ax * scale, ay * scale, px * scale, py * scale, line_pt=0.75)
+        shapes.textbox(p, bx * scale, by * scale, bw * scale, (bh + 10) * scale,
+                       it["text"], pt=7.5, font=FONT, line_pt=1.0)
     c = para(doc, 0, 6, align=WD_ALIGN_PARAGRAPH.CENTER)
     run(c, caption, size=9, italic=True, color=GREY)
     return p
@@ -423,7 +448,8 @@ def steps(doc):
             for b in st["bullets"]:
                 bullet(doc, b)
             band(doc, f"{ch.split('. ', 1)[1].upper()}   ·   STEP {k} OF {total}")
-            figure(doc, fig, f"Fig. {n} — {st['caption']}")
+            figure(doc, fig, f"Fig. {n} — {st['caption']}",
+                   LAYOUTS[f"fig{i:02d}_{st['screen']}"])
             if st.get("note"):
                 note(doc, st["note"])
 
@@ -458,6 +484,16 @@ def login_validations(doc):
       [2.6, 4.4])
 
 
+def renumber_drawings(doc):
+    """Give every drawing in a part a unique id; python-docx numbers the
+    pictures it adds from 1 each time, which collides with the shape ids."""
+    tag = qn("wp:docPr")
+    for part in [doc.element.body] + [h._element for s_ in doc.sections
+                                      for h in (s_.header, s_.footer)]:
+        for i, el in enumerate(part.iter(tag), 1):
+            el.set("id", str(i))
+
+
 def main(out="JBM_DMS_Service_Mobile_App_User_Manual.docx"):
     doc = Document()
     st = doc.styles["Normal"]
@@ -472,6 +508,7 @@ def main(out="JBM_DMS_Service_Mobile_App_User_Manual.docx"):
     introduction(doc)
     steps(doc)
     back_matter(doc)
+    renumber_drawings(doc)
     doc.save(out)
     print("wrote", out, os.path.getsize(out) // 1024, "KB")
 

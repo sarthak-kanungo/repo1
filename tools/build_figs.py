@@ -34,14 +34,19 @@ def callouts_for(step):
 
 def main():
     missing = []
+    layouts = {}
     for i, st in enumerate(STEPS, 1):
         scr = st["screen"]
         co = callouts_for(st)
         if not co:
             missing.append(scr)
-        out = f"figs/fig{i:02d}_{scr}.png"
-        anno.render(f"screens/{scr}.png", co, out, crop_top=0, crop_bottom=0)
-        print(f"{i:2}. {scr}  {len(co):2} callouts  -> {out}", flush=True)
+        key = f"fig{i:02d}_{scr}"
+        # the picture is the bare device shot; the callouts travel as geometry
+        # so the document can draw them as editable Word shapes
+        layouts[key] = anno.layout(f"screens/{scr}.png", co, f"figs/{key}.png")
+        anno.render(f"screens/{scr}.png", co, f"figs/flat_{key}.png")
+        print(f"{i:2}. {scr}  {len(co):2} callouts  -> figs/{key}.png", flush=True)
+    json.dump(layouts, open("figs/layouts.json", "w"))
     # sanity: every curated label must have matched a detected control
     for st in STEPS:
         scr = st["screen"]

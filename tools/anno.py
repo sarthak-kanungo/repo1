@@ -10,7 +10,7 @@ BOLD = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 GUTTER   = 660          # px of white space each side of the phone
 PAD_TOP  = 40
 PAD_BOT  = 40
-FS       = 38           # callout font size
+FS       = 40           # callout font size
 BOXPAD   = 14
 MAXTXT   = 560          # max text width inside a callout box
 LINE_W   = 4
@@ -126,8 +126,11 @@ def _place(items, top, bottom):
                 break
 
 
-def render(screen, callouts, out, crop_top=0, crop_bottom=0, device=True):
-    """callouts: list of dicts {label, rect=(x,y,w,h), side='L'|'R'}"""
+def prepare(screen, callouts, crop_top=0, crop_bottom=0, device=True, pad=0):
+    """Place every callout box and work out its leader arrow.
+
+    Returns (phone_image, canvas_size, items) with all geometry in canvas
+    pixels, the phone occupying x in [GUTTER, GUTTER + PW], y in [pad, pad + PH]."""
     ph = Image.open(screen).convert("RGB")
     if crop_top or crop_bottom:
         ph = ph.crop((0, crop_top, ph.width, ph.height - crop_bottom))
@@ -137,10 +140,8 @@ def render(screen, callouts, out, crop_top=0, crop_bottom=0, device=True):
     else:
         dx = dy = 0
     PW, PH = ph.size
-    CW, CH = PW + 2 * GUTTER, PH + PAD_TOP + PAD_BOT
-    canvas = Image.new("RGB", (CW, CH), "white")
-    canvas.paste(ph, (GUTTER, PAD_TOP))
-    d = ImageDraw.Draw(canvas)
+    CW, CH = PW + 2 * GUTTER, PH + 2 * pad
+    scratch = ImageDraw.Draw(Image.new("RGB", (8, 8)))
     font = ImageFont.truetype(BOLD, FS)
 
     prepared = {"L": [], "R": []}
@@ -151,30 +152,64 @@ def render(screen, callouts, out, crop_top=0, crop_bottom=0, device=True):
         x, y = max(2, x), max(2, y)
         w, h = min(w, SW - x - 2), min(h, SH - y - 2)
         x, y = x + dx, y + dy
-        tx, ty = GUTTER + x, PAD_TOP + y
-        lines = _wrap(d, c["label"], font)
+        tx, ty = GUTTER + x, pad + y
+        lines = _wrap(scratch, c["label"], font)
         lh = FS + 10
-        bw = int(max(d.textlength(l, font=font) for l in lines)) + 2 * BOXPAD
+        bw = int(max(scratch.textlength(l, font=font) for l in lines)) + 2 * BOXPAD
         bh = lh * len(lines) + 2 * BOXPAD - 6
         prepared[c.get("side", "R")].append(dict(
-            lines=lines, bw=bw, bh=bh, lh=lh,
+            lines=lines, text=c["label"], bw=bw, bh=bh, lh=lh,
             tx=tx, ty=ty + h / 2, trect=(tx, ty, w, h), side=c.get("side", "R")))
 
-    _place(prepared["L"], PAD_TOP + 10, CH - PAD_BOT - 10)
-    _place(prepared["R"], PAD_TOP + 10, CH - PAD_BOT - 10)
+    _place(prepared["L"], pad + 10, CH - pad - 10)
+    _place(prepared["R"], pad + 10, CH - pad - 10)
 
+    items = []
     for side in ("L", "R"):
         for it in prepared[side]:
             bx = GUTTER - 30 - it["bw"] if side == "L" else GUTTER + PW + 30
             by = it["by"]
             tx, ty, tw, th = it["trect"]
-            # outline the control being named
-            d.rectangle([tx, ty, tx + tw, ty + th], outline="black", width=TARGET_W)
-            # leader line from the box to the nearest edge of the control
             ax = bx + it["bw"] if side == "L" else bx
             ay = by + it["bh"] / 2
             px = tx if side == "L" else tx + tw
             py = ty + th / 2
+            it.update(box=(bx, by, it["bw"], it["bh"]), target=(tx, ty, tw, th),
+                      arrow=(ax, ay, px, py))
+            items.append(it)
+    return ph, (CW, CH), items
+
+
+def layout(screen, callouts, bare_png, crop_top=0, crop_bottom=0):
+    """Save the un-annotated device shot and return the annotation geometry."""
+    ph, (CW, CH), items = prepare(screen, callouts, crop_top, crop_bottom)
+    ph.save(bare_png)
+    return dict(canvas=[CW, CH], gutter=GUTTER, phone=[ph.width, ph.height],
+                font_px=FS, line_px=LINE_W, target_px=TARGET_W,
+                items=[dict(text=it["text"], box=[round(v) for v in it["box"]],
+                            target=[round(v) for v in it["target"]],
+                            arrow=[round(v) for v in it["arrow"]],
+                            lines=it["lines"], side=it["side"]) for it in items])
+
+
+def render(screen, callouts, out, crop_top=0, crop_bottom=0, device=True):
+    """Flat PNG version: callouts drawn straight into the image."""
+    ph, (CW, CH), items = prepare(screen, callouts, crop_top, crop_bottom,
+                                  device, pad=PAD_TOP)
+    canvas = Image.new("RGB", (CW, CH), "white")
+    canvas.paste(ph, (GUTTER, PAD_TOP))
+    d = ImageDraw.Draw(canvas)
+    font = ImageFont.truetype(BOLD, FS)
+    prepared = {"L": [it for it in items if it["side"] == "L"],
+                "R": [it for it in items if it["side"] == "R"]}
+
+    for side in ("L", "R"):
+        for it in prepared[side]:
+            bx, by, _bw, _bh = it["box"]
+            tx, ty, tw, th = it["target"]
+            ax, ay, px, py = it["arrow"]
+            # outline the control being named
+            d.rectangle([tx, ty, tx + tw, ty + th], outline="black", width=TARGET_W)
             d.line([ax, ay, px, py], fill="black", width=LINE_W)
             # arrow head
             ang = math.atan2(py - ay, px - ax)

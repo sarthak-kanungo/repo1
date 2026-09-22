@@ -7,6 +7,10 @@ instructions, a blue section band, and a screenshot — shown in a **mobile devi
 frame** — in which **every field, button, badge and filter carries its own
 callout box and leader arrow**.
 
+The callouts are **native Word shapes, not part of the picture**: the text in
+any box can be retyped, the box moved, resized or deleted, and any arrow or
+target outline deleted on its own.
+
 ## Deliverables
 
 | File | Description |
@@ -16,7 +20,10 @@ callout box and leader arrow**.
 
 ## What is inside
 
-- **34 annotated screens**, numbered `i.` to `xxxiv.`, carrying **411 field callouts** in total.
+- **34 annotated screens**, numbered `i.` to `xxxiv.`, carrying **403 field callouts** in total.
+- Each callout is three separate, editable shapes — the white text box, the
+  leader arrow, and the outline around the control it names — so a reader can
+  reword, rearrange or remove any of them in Word.
 - Every screenshot is composited into a mobile device frame (chassis, rounded
   screen corners and side buttons) with the status bar left intact.
 - Chapters follow the source manual: Introduction, Login / Logout, User Profile,
@@ -35,9 +42,10 @@ callout box and leader arrow**.
 | Script | Role |
 |---|---|
 | `detect.py` | Finds form controls on a screenshot (filled inputs, outlined inputs, blue section bands and buttons, checkboxes) and OCRs each control's caption and value |
-| `anno.py` | Wraps a screen capture in a mobile device frame, then renders it in the screen-guide style — white callout boxes, black leader arrows and a black outline around the control each callout names |
+| `anno.py` | Wraps a screen capture in a mobile device frame and lays out the callouts — box placement, leader arrows and target outlines — exporting the geometry (and a flat PNG preview) |
+| `shapes.py` | Emits that geometry as native Word DrawingML shapes: editable text boxes, arrow connectors and unfilled outline rectangles |
 | `spec_a.py`, `spec_b.py`, `spec_c.py` | The curated step specification: chapter, title, instructions, note and the callout text and side for every control |
-| `build_figs.py` | Merges the detected controls with the specification and renders all 34 figures |
+| `build_figs.py` | Merges the detected controls with the specification, writes the 34 bare device shots and their callout geometry |
 | `build_docx.py` | Lays the figures, instructions and tables out into the Word document |
 
 The screenshots themselves are extracted from the `Data` stream of the source
