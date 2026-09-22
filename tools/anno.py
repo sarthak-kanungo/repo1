@@ -19,6 +19,42 @@ GAP      = 22           # min vertical gap between stacked callouts
 
 _ocr_cache = {}
 
+# --- device frame ----------------------------------------------------------
+BEZEL    = 36          # chassis thickness around the screen
+BTN_OUT  = 9           # how far the side buttons stand proud of the chassis
+R_OUT    = 168         # outer chassis corner radius
+R_IN     = 132         # screen corner radius
+CHASSIS  = (18, 22, 31)
+RIM      = (86, 94, 110)
+BTN      = (52, 58, 70)
+
+
+def frame_phone(img):
+    """Wrap a raw screen capture in a mobile device frame.
+
+    Returns (framed_image, dx, dy) where dx/dy is where the screen's own
+    (0, 0) now sits inside the framed image."""
+    W, H = img.size
+    dx, dy = BTN_OUT + BEZEL, BEZEL
+    FW, FH = W + 2 * BEZEL + 2 * BTN_OUT, H + 2 * BEZEL
+    out = Image.new("RGB", (FW, FH), "white")
+    d = ImageDraw.Draw(out)
+    cx0, cx1 = BTN_OUT, FW - BTN_OUT - 1
+
+    # side buttons first, so the chassis overlaps their inner half
+    for y0, y1 in ((int(H * 0.20), int(H * 0.27)), (int(H * 0.30), int(H * 0.41))):
+        d.rounded_rectangle([0, y0, cx0 + 16, y1], radius=9, fill=BTN)          # volume
+    y0, y1 = int(H * 0.26), int(H * 0.38)
+    d.rounded_rectangle([cx1 - 16, y0, FW - 1, y1], radius=9, fill=BTN)         # power
+
+    d.rounded_rectangle([cx0, 0, cx1, FH - 1], radius=R_OUT, fill=CHASSIS)
+    d.rounded_rectangle([cx0 + 5, 5, cx1 - 5, FH - 6], radius=R_OUT - 5, outline=RIM, width=3)
+
+    mask = Image.new("L", (W, H), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, W - 1, H - 1], radius=R_IN, fill=255)
+    out.paste(img.convert("RGB"), (dx, dy), mask)
+    return out, dx, dy
+
 
 def ocr_lines(path):
     if path in _ocr_cache:
@@ -90,11 +126,16 @@ def _place(items, top, bottom):
                 break
 
 
-def render(screen, callouts, out, crop_top=0, crop_bottom=0):
+def render(screen, callouts, out, crop_top=0, crop_bottom=0, device=True):
     """callouts: list of dicts {label, rect=(x,y,w,h), side='L'|'R'}"""
     ph = Image.open(screen).convert("RGB")
     if crop_top or crop_bottom:
         ph = ph.crop((0, crop_top, ph.width, ph.height - crop_bottom))
+    SW, SH = ph.size                      # the screen itself
+    if device:
+        ph, dx, dy = frame_phone(ph)
+    else:
+        dx = dy = 0
     PW, PH = ph.size
     CW, CH = PW + 2 * GUTTER, PH + PAD_TOP + PAD_BOT
     canvas = Image.new("RGB", (CW, CH), "white")
@@ -106,11 +147,10 @@ def render(screen, callouts, out, crop_top=0, crop_bottom=0):
     for c in callouts:
         x, y, w, h = c["rect"]
         y -= crop_top
-        # keep the outline inside the cropped screenshot
-        y = max(2, y)
-        h = min(h, PH - y - 2)
-        x = max(2, x)
-        w = min(w, PW - x - 2)
+        # clamp to the screen, then shift into the device frame
+        x, y = max(2, x), max(2, y)
+        w, h = min(w, SW - x - 2), min(h, SH - y - 2)
+        x, y = x + dx, y + dy
         tx, ty = GUTTER + x, PAD_TOP + y
         lines = _wrap(d, c["label"], font)
         lh = FS + 10

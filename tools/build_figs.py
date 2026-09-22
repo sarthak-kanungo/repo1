@@ -40,7 +40,7 @@ def main():
         if not co:
             missing.append(scr)
         out = f"figs/fig{i:02d}_{scr}.png"
-        anno.render(f"screens/{scr}.png", co, out, crop_top=165, crop_bottom=30)
+        anno.render(f"screens/{scr}.png", co, out, crop_top=0, crop_bottom=0)
         print(f"{i:2}. {scr}  {len(co):2} callouts  -> {out}", flush=True)
     # sanity: every curated label must have matched a detected control
     for st in STEPS:

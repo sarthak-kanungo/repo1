@@ -21,7 +21,7 @@ BAND      = "4E81BD"                        # fig-1 band fill
 DARK      = RGBColor(0x20, 0x20, 0x20)
 GREY      = RGBColor(0x60, 0x60, 0x60)
 NAVY      = RGBColor(0x0F, 0x3D, 0x66)
-FIG_W     = Inches(6.30)
+FIG_W     = Inches(6.85)
 FONT      = "Arial"
 
 ROMAN = [(1000,"m"),(900,"cm"),(500,"d"),(400,"cd"),(100,"c"),(90,"xc"),
@@ -411,6 +411,8 @@ def steps(doc):
             c = para(doc, 0, 5)
             c.paragraph_format.left_indent = Inches(0.28)
             run(c, s_["caption"], size=9.5, italic=True, color=GREY)
+        if ch.startswith("2."):
+            login_validations(doc)
         for k, st in enumerate(ch_seen[ch], 1):
             n += 1
             i = STEPS.index(st) + 1
@@ -424,8 +426,6 @@ def steps(doc):
             figure(doc, fig, f"Fig. {n} — {st['caption']}")
             if st.get("note"):
                 note(doc, st["note"])
-        if ch.startswith("2."):
-            login_validations(doc)
 
 
 def back_matter(doc):

@@ -3,8 +3,9 @@
 A field-by-field user manual for the JBM DMS Service Mobile App, rebuilt from
 `JBM_DMS_Service_Mobile_App_User_Mannual.doc` so that every application screen is
 laid out in the JBM screen-guide style: a blue step heading, square-bullet
-instructions, a blue section band, and a screenshot in which **every field,
-button, badge and filter carries its own callout box and leader arrow**.
+instructions, a blue section band, and a screenshot — shown in a **mobile device
+frame** — in which **every field, button, badge and filter carries its own
+callout box and leader arrow**.
 
 ## Deliverables
 
@@ -16,6 +17,8 @@ button, badge and filter carries its own callout box and leader arrow**.
 ## What is inside
 
 - **34 annotated screens**, numbered `i.` to `xxxiv.`, carrying **411 field callouts** in total.
+- Every screenshot is composited into a mobile device frame (chassis, rounded
+  screen corners and side buttons) with the status bar left intact.
 - Chapters follow the source manual: Introduction, Login / Logout, User Profile,
   Contact Us, Gate In / Gate Out, Auto Job Cards (Daily / Ten-Day),
   Assign Auto Job Cards, DCR Charging, User Troubleshooting and
@@ -32,7 +35,7 @@ button, badge and filter carries its own callout box and leader arrow**.
 | Script | Role |
 |---|---|
 | `detect.py` | Finds form controls on a screenshot (filled inputs, outlined inputs, blue section bands and buttons, checkboxes) and OCRs each control's caption and value |
-| `anno.py` | Renders a screenshot in the screen-guide style — white callout boxes, black leader arrows and a black outline around the control each callout names |
+| `anno.py` | Wraps a screen capture in a mobile device frame, then renders it in the screen-guide style — white callout boxes, black leader arrows and a black outline around the control each callout names |
 | `spec_a.py`, `spec_b.py`, `spec_c.py` | The curated step specification: chapter, title, instructions, note and the callout text and side for every control |
 | `build_figs.py` | Merges the detected controls with the specification and renders all 34 figures |
 | `build_docx.py` | Lays the figures, instructions and tables out into the Word document |
