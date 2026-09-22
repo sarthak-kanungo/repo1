@@ -2,7 +2,7 @@
 """Build the JBM DMS Service Mobile App user manual as a .docx, laying every
 screen out in the fig-1 style: blue step heading, square bullets, a blue band
 and a fully annotated screenshot."""
-import os, sys, json
+import os, sys, json, glob, shutil, subprocess, tempfile
 sys.path.insert(0, "lib")
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor, Emu
@@ -494,6 +494,29 @@ def renumber_drawings(doc):
             el.set("id", str(i))
 
 
+SOFFICE = "soffice"
+
+
+def normalize(path):
+    """Rewrite the document through LibreOffice's .docx exporter.
+
+    Word will not open the shape markup we hand-write - it reports "problems
+    with the contents" - while LibreOffice emits the same shapes the way Word
+    itself does, each wrapped in an mc:AlternateContent with a VML fallback.
+    Re-exporting leaves the layout alone (checked page by page against the
+    render of the file that goes in) and keeps every shape editable."""
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run([SOFFICE, f"-env:UserInstallation=file://{tmp}/profile",
+                        "--headless", "--convert-to", "docx:MS Word 2007 XML",
+                        os.path.abspath(path), "--outdir", tmp],
+                       check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        made = glob.glob(os.path.join(tmp, "*.docx"))
+        if not made:
+            raise RuntimeError("LibreOffice produced no .docx")
+        shutil.move(made[0], path)
+    print("normalised through LibreOffice:", path)
+
+
 def main(out="JBM_DMS_Service_Mobile_App_User_Manual.docx"):
     doc = Document()
     st = doc.styles["Normal"]
@@ -510,6 +533,7 @@ def main(out="JBM_DMS_Service_Mobile_App_User_Manual.docx"):
     back_matter(doc)
     renumber_drawings(doc)
     doc.save(out)
+    normalize(out)
     print("wrote", out, os.path.getsize(out) // 1024, "KB")
 
 

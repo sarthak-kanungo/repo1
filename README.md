@@ -46,10 +46,21 @@ target outline deleted on its own.
 | `shapes.py` | Emits that geometry as native Word DrawingML shapes: editable text boxes, arrow connectors and unfilled outline rectangles |
 | `spec_a.py`, `spec_b.py`, `spec_c.py` | The curated step specification: chapter, title, instructions, note and the callout text and side for every control |
 | `build_figs.py` | Merges the detected controls with the specification, writes the 34 bare device shots and their callout geometry |
-| `build_docx.py` | Lays the figures, instructions and tables out into the Word document |
+| `build_docx.py` | Lays the figures, instructions and tables out into the Word document, then re-exports it through LibreOffice |
 
 The screenshots themselves are extracted from the `Data` stream of the source
 `.doc`, so the pipeline needs that file present to run end to end.
+
+### Why the document is re-exported through LibreOffice
+
+Word refuses to open the shape markup `build_docx.py` writes by hand — it
+reports *"problems with the contents"* — even though the XML is well formed and
+LibreOffice reads it. The last build step therefore re-exports the document with
+`soffice --convert-to docx`, which writes the same shapes the way Word itself
+does: each wrapped in an `mc:AlternateContent` carrying a VML fallback. The
+re-export leaves the layout alone (every page was compared against the render of
+the file going in; the largest difference was 0.35% of pixels) and every callout
+stays editable.
 
 Requires `python-docx`, `python-pptx`, `Pillow`, `numpy`, `opencv-python-headless`,
 `pytesseract` and `tesseract-ocr`.
