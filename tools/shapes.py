@@ -1,19 +1,32 @@
 # -*- coding: utf-8 -*-
-"""Emit callout boxes, leader arrows and target outlines as native Word shapes,
-so their text stays editable and each shape can be moved, resized or deleted."""
+"""Emit callout boxes, leader arrows and target outlines as VML shapes.
+
+VML - not the newer DrawingML `wps` shapes - because Word 2007 has no idea what
+`wps` is: it refuses to open a document containing them, and when they arrive
+wrapped in an mc:AlternateContent it draws the fallback as empty slivers. VML is
+Word 2007's own shape format and is still fully editable in later versions, so
+every box can be retyped, resized or deleted and every arrow removed on its own.
+
+All coordinates are in points, measured from the left margin and from the top of
+the anchoring paragraph."""
 from docx.oxml import parse_xml
-from docx.oxml.ns import nsmap, nsdecls
+from docx.oxml.ns import nsdecls, nsmap
 
-nsmap.setdefault("wps", "http://schemas.microsoft.com/office/word/2010/wordprocessingShape")
-NSD = nsdecls("w", "wp", "a", "wps", "r")
+# python-docx does not know the VML prefixes, so register them before use
+nsmap.setdefault("v", "urn:schemas-microsoft-com:vml")
+nsmap.setdefault("w10", "urn:schemas-microsoft-com:office:word")
+nsmap.setdefault("o", "urn:schemas-microsoft-com:office:office")
 
-EMU = 914400
-_next = [5000]
+NSD = nsdecls("w", "v", "w10", "o", "r")
+_next = [0]
+
+ANCHOR = ("position:absolute;mso-position-horizontal-relative:margin;"
+          "mso-position-vertical-relative:text")
 
 
-def _id():
+def _uid(kind):
     _next[0] += 1
-    return _next[0]
+    return f"{kind}{_next[0]}"
 
 
 def _esc(t):
@@ -21,74 +34,56 @@ def _esc(t):
              .replace('"', "&quot;"))
 
 
-_ANCHOR = """<w:r {nsd}><w:drawing>
-<wp:anchor distT="0" distB="0" distL="0" distR="0" simplePos="0" relativeHeight="{z}"
- behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1">
-<wp:simplePos x="0" y="0"/>
-<wp:positionH relativeFrom="column"><wp:posOffset>{x}</wp:posOffset></wp:positionH>
-<wp:positionV relativeFrom="paragraph"><wp:posOffset>{y}</wp:posOffset></wp:positionV>
-<wp:extent cx="{cx}" cy="{cy}"/>
-<wp:effectExtent l="0" t="0" r="0" b="0"/>
-<wp:wrapNone/>
-<wp:docPr id="{id}" name="{name}"/>
-<wp:cNvGraphicFramePr/>
-<a:graphic><a:graphicData
- uri="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">{shape}</a:graphicData></a:graphic>
-</wp:anchor></w:drawing></w:r>"""
+def _pict(par, shape):
+    par._p.append(parse_xml(f"<w:r {NSD}><w:pict>{shape}</w:pict></w:r>"))
 
 
-def _anchor(x, y, cx, cy, shape, name, z):
-    return parse_xml(_ANCHOR.format(nsd=NSD, x=int(x), y=int(y), cx=max(1, int(cx)),
-                                    cy=max(1, int(cy)), shape=shape, name=name,
-                                    id=_id(), z=z))
+def _f(v):
+    return f"{v:.2f}"
 
 
-def textbox(par, x, y, cx, cy, text, pt=7.5, font="Arial", line_pt=1.0, z=20):
+def textbox(par, x, y, w, h, text, pt=7.5, font="Arial", line_pt=1.0, z=20):
     """A white callout box with a black border whose text can be edited."""
+    style = (f"{ANCHOR};margin-left:{_f(x)}pt;margin-top:{_f(y)}pt;"
+             f"width:{_f(w)}pt;height:{_f(h)}pt;z-index:{z}")
+    sz = int(round(pt * 2))
     shape = (
-      '<wps:wsp><wps:cNvSpPr txBox="1"/><wps:spPr>'
-      f'<a:xfrm><a:off x="0" y="0"/><a:ext cx="{max(1,int(cx))}" cy="{max(1,int(cy))}"/></a:xfrm>'
-      '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
-      '<a:solidFill><a:srgbClr val="FFFFFF"/></a:solidFill>'
-      f'<a:ln w="{int(line_pt*12700)}"><a:solidFill><a:srgbClr val="000000"/></a:solidFill></a:ln>'
-      '</wps:spPr><wps:txbx><w:txbxContent><w:p><w:pPr>'
+      f'<v:rect id="{_uid("cb")}" style="{style}" fillcolor="#ffffff"'
+      f' strokecolor="#000000" strokeweight="{_f(line_pt)}pt">'
+      '<v:textbox inset="2pt,1pt,2pt,1pt"><w:txbxContent><w:p><w:pPr>'
       '<w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto"/>'
       '<w:jc w:val="left"/></w:pPr><w:r><w:rPr>'
       f'<w:rFonts w:ascii="{font}" w:hAnsi="{font}" w:cs="{font}"/><w:b/>'
-      f'<w:color w:val="000000"/><w:sz w:val="{int(round(pt*2))}"/>'
-      f'<w:szCs w:val="{int(round(pt*2))}"/></w:rPr>'
-      f'<w:t xml:space="preserve">{_esc(text)}</w:t></w:r></w:p></w:txbxContent></wps:txbx>'
-      '<wps:bodyPr rot="0" vert="horz" wrap="square" lIns="25400" tIns="12700"'
-      ' rIns="25400" bIns="12700" anchor="ctr" anchorCtr="0"><a:noAutofit/></wps:bodyPr>'
-      '</wps:wsp>')
-    par._p.append(_anchor(x, y, cx, cy, shape, "Callout", z))
+      f'<w:color w:val="000000"/><w:sz w:val="{sz}"/><w:szCs w:val="{sz}"/>'
+      f'</w:rPr><w:t xml:space="preserve">{_esc(text)}</w:t></w:r></w:p>'
+      '</w:txbxContent></v:textbox><w10:wrap type="none"/></v:rect>')
+    _pict(par, shape)
 
 
-def outline(par, x, y, cx, cy, line_pt=1.0, z=15):
+def outline(par, x, y, w, h, line_pt=1.0, z=15):
     """An unfilled rectangle marking the control a callout names."""
-    shape = (
-      '<wps:wsp><wps:cNvSpPr/><wps:spPr>'
-      f'<a:xfrm><a:off x="0" y="0"/><a:ext cx="{max(1,int(cx))}" cy="{max(1,int(cy))}"/></a:xfrm>'
-      '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom><a:noFill/>'
-      f'<a:ln w="{int(line_pt*12700)}"><a:solidFill><a:srgbClr val="000000"/></a:solidFill></a:ln>'
-      '</wps:spPr><wps:bodyPr/></wps:wsp>')
-    par._p.append(_anchor(x, y, cx, cy, shape, "Target", z))
+    style = (f"{ANCHOR};margin-left:{_f(x)}pt;margin-top:{_f(y)}pt;"
+             f"width:{_f(w)}pt;height:{_f(h)}pt;z-index:{z}")
+    shape = (f'<v:rect id="{_uid("tg")}" style="{style}" filled="f"'
+             f' strokecolor="#000000" strokeweight="{_f(line_pt)}pt">'
+             '<w10:wrap type="none"/></v:rect>')
+    _pict(par, shape)
 
 
 def arrow(par, x1, y1, x2, y2, line_pt=0.75, z=18):
-    """A straight leader line with an arrow head at (x2, y2)."""
-    x, y = min(x1, x2), min(y1, y2)
-    cx, cy = abs(x2 - x1), abs(y2 - y1)
-    flip = ""
-    if x2 < x1:
-        flip += ' flipH="1"'
-    if y2 < y1:
-        flip += ' flipV="1"'
-    shape = (
-      '<wps:wsp><wps:cNvCnPr/><wps:spPr>'
-      f'<a:xfrm{flip}><a:off x="0" y="0"/><a:ext cx="{max(1,int(cx))}" cy="{max(1,int(cy))}"/></a:xfrm>'
-      '<a:prstGeom prst="line"><a:avLst/></a:prstGeom>'
-      f'<a:ln w="{int(line_pt*12700)}"><a:solidFill><a:srgbClr val="000000"/></a:solidFill>'
-      '<a:tailEnd type="triangle" w="med" len="med"/></a:ln>'
-      '</wps:spPr><wps:bodyPr/></wps:wsp>')
-    par._p.append(_anchor(x, y, cx, cy, shape, "Leader", z))
+    """A straight leader line with an arrow head at (x2, y2).
+
+    `from` is always the left-most end: a v:line that runs right-to-left has a
+    negative width and is dropped on import, so a leftward arrow is written
+    left-to-right with the head on its start instead."""
+    head = "endarrow"
+    if (x2, y2) < (x1, y1):
+        x1, y1, x2, y2 = x2, y2, x1, y1
+        head = "startarrow"
+    style = f"{ANCHOR};z-index:{z}"
+    shape = (f'<v:line id="{_uid("ld")}" style="{style}"'
+             f' from="{_f(x1)}pt,{_f(y1)}pt" to="{_f(x2)}pt,{_f(y2)}pt"'
+             f' strokecolor="#000000" strokeweight="{_f(line_pt)}pt">'
+             f'<v:stroke {head}="block" {head}width="medium" {head}length="medium"/>'
+             '<w10:wrap type="none"/></v:line>')
+    _pict(par, shape)
