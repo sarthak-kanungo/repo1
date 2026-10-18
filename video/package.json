@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "studio": "remotion studio",
-    "render": "node render.mjs"
+    "render": "node render.mjs",
+    "render:awakening": "node render-awakening.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.530",
