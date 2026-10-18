@@ -1,0 +1,12 @@
+{
+  "handle": "@yourhandle",
+  "theme": {"background": "#0f0f14", "text": "#ffffff", "accent": "#ff6b4a"},
+  "scenes": [
+    {"text": "I wasted *5 hours* on every proposal.", "seconds": 2.5},
+    {"text": "Then I built one template.", "seconds": 2},
+    {"text": "Now it takes *20 minutes*.", "sub": "Same quality. Same clients.", "seconds": 2.5},
+    {"text": "Here's the trick:", "seconds": 1.5},
+    {"text": "Write the structure *once*.", "sub": "Fill the blanks every time.", "seconds": 3},
+    {"text": "Comment *TEMPLATE* and I'll send it.", "seconds": 3}
+  ]
+}
