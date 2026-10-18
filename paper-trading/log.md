@@ -1,8 +1,8 @@
 # Paper trading log
 
-Virtual capital at start: ₹10,000
+Virtual capital at start: ₹50,000
 
-| Date | Instrument | Buy time | Buy price | Qty | Stop-loss | Target | Sell time | Sell price | P&L (₹) | Reason for exit |
-|---|---|---|---|---|---|---|---|---|---|---|
+| Date | Index | Option | Buy time | Buy price | Qty | Stop-loss | Target | Sell time | Sell price | P&L (₹) | Reason for exit |
+|---|---|---|---|---|---|---|---|---|---|---|---|
 
-Running capital: ₹10,000
+Running capital: ₹50,000
