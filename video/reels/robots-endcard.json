@@ -1,0 +1,7 @@
+{
+  "progressBar": false,
+  "theme": {"background": "#0b0204", "text": "#ffffff", "accent": "#ff3b3b"},
+  "scenes": [
+    {"text": "What came through the *portal*?", "sub": "Best guess in the comments decides part 2.", "seconds": 3.5}
+  ]
+}

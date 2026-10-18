@@ -19,6 +19,8 @@ export type ReelProps = {
   theme?: {background?: string; text?: string; accent?: string};
   // Small label shown on every scene, e.g. your @handle.
   handle?: string;
+  // Set false for overlays and short cards.
+  progressBar?: boolean;
   scenes: Scene[];
 };
 
@@ -49,7 +51,11 @@ const SceneView: React.FC<{scene: Scene; index: number; frames: number; theme: t
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 90,
+        // Instagram's UI covers y<230, y>1440 and the right 230px: keep text inside.
+        paddingTop: 230,
+        paddingBottom: 480,
+        paddingLeft: 90,
+        paddingRight: 250,
         opacity: exit,
       }}
     >
@@ -61,6 +67,8 @@ const SceneView: React.FC<{scene: Scene; index: number; frames: number; theme: t
           lineHeight: 1.1,
           color: theme.text,
           textAlign: 'center',
+          // A soft shadow keeps text readable over footage.
+          textShadow: '0 4px 24px rgba(0,0,0,0.6)',
           transform: `translateY(${(1 - enter) * 60}px) scale(${0.92 + enter * 0.08})`,
           opacity: enter,
         }}
@@ -113,7 +121,7 @@ export const Reel: React.FC<ReelProps> = (props) => {
         return seq;
       })}
       {/* Progress bar keeps people watching to the end. */}
-      <div
+      {props.progressBar === false ? null : <div
         style={{
           position: 'absolute',
           top: 0,
@@ -122,13 +130,14 @@ export const Reel: React.FC<ReelProps> = (props) => {
           width: `${(frame / durationInFrames) * 100}%`,
           backgroundColor: theme.accent,
         }}
-      />
+      />}
       {props.handle ? (
         <div
           style={{
             position: 'absolute',
-            bottom: 260,
-            width: '100%',
+            bottom: 500,
+            left: 90,
+            right: 250,
             textAlign: 'center',
             fontFamily: 'Inter, Helvetica, Arial, sans-serif',
             fontSize: 40,

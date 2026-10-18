@@ -1,0 +1,7 @@
+{
+  "progressBar": false,
+  "theme": {"background": "transparent", "text": "#ffffff", "accent": "#ff3b3b"},
+  "scenes": [
+    {"text": "*10,000* robots stopped at once.", "seconds": 3}
+  ]
+}
