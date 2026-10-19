@@ -36,3 +36,5 @@ Bank Nifty 55,572.60: inside range, WAIT.
 
 13:21 check-in: NIFTY 22950 PE = 191.70 (index 22,901.60). HOLD. Open P&L +₹75.
 Bank Nifty 55,461.15: inside range, WAIT. No new entries after 13:30, so no Bank Nifty trade today.
+
+13:50 check-in: NIFTY 22950 PE = 208.40 (index 22,867.00). HOLD. Open P&L +₹1,160.
