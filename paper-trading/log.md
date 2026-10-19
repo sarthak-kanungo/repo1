@@ -4,6 +4,7 @@ Virtual capital at start: ₹50,000
 
 | Date | Index | Option | Buy time | Buy price | Qty | Stop-loss | Target | Sell time | Sell price | P&L (₹) | Reason for exit |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-10-19 | Nifty 50 | NIFTY 27-Oct 22950 PE | 12:21 | 190.55 | 65 | 142.90 | 285.85 | (open) | | | |
 
 Running capital: ₹50,000
 
@@ -23,3 +24,9 @@ Opening range 9:15-9:30 (source: Yahoo Finance 15-min candles; Dhan connector ne
 | Bank Nifty | 55,882.90 | 55,373.35 | 55,693.25 (11:11) | WAIT (inside range) |
 | Nifty 50 | 23,175.10 | 22,970.85 | 22,997.75 (11:51) | WAIT (inside range, near low) |
 | Bank Nifty | 55,882.90 | 55,373.35 | 55,561.40 (11:51) | WAIT (inside range) |
+| Nifty 50 | 23,175.10 | 22,970.85 | 22,932.40 (12:22) | **BUY 22950 PE** (broke below range low) |
+| Bank Nifty | 55,882.90 | 55,373.35 | 55,501.65 (12:22) | WAIT (inside range) |
+
+Nifty entry: index 22,930.55 at 12:21:18, ATM strike 22,950, expiry 27-Oct (19-Oct contract expires today, so skipped).
+Premium from NSE's public option chain (Dhan connector needed re-login). Cost 190.55 x 65 = ₹12,385.75.
+Stop-loss 142.90 (-25%), target 285.85 (+50%). Risk ₹3,097.
