@@ -15,3 +15,5 @@ Opening range 9:15-9:30 (source: Yahoo Finance 15-min candles; Dhan connector ne
 |---|---|---|---|---|
 | Nifty 50 | 23,175.10 | 22,970.85 | 23,133.55 | WAIT (inside range) |
 | Bank Nifty | 55,882.90 | 55,373.35 | 55,679.85 | WAIT (inside range) |
+| Nifty 50 | 23,175.10 | 22,970.85 | 23,071.20 (10:11) | WAIT (inside range) |
+| Bank Nifty | 55,882.90 | 55,373.35 | 55,486.25 (10:11) | WAIT (inside range) |
