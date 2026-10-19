@@ -33,3 +33,6 @@ Stop-loss 142.90 (-25%), target 285.85 (+50%). Risk ₹3,097.
 
 12:51 check-in: NIFTY 22950 PE = 190.15 (index 22,930.80). Between SL and target: HOLD. Open P&L -₹26.
 Bank Nifty 55,572.60: inside range, WAIT.
+
+13:21 check-in: NIFTY 22950 PE = 191.70 (index 22,901.60). HOLD. Open P&L +₹75.
+Bank Nifty 55,461.15: inside range, WAIT. No new entries after 13:30, so no Bank Nifty trade today.
