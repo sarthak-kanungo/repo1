@@ -4,9 +4,9 @@ Virtual capital at start: ₹50,000
 
 | Date | Index | Option | Buy time | Buy price | Qty | Stop-loss | Target | Sell time | Sell price | P&L (₹) | Reason for exit |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-10-19 | Nifty 50 | NIFTY 27-Oct 22950 PE | 12:21 | 190.55 | 65 | 142.90 | 285.85 | (open) | | | |
+| 2026-10-19 | Nifty 50 | NIFTY 27-Oct 22950 PE | 12:21 | 190.55 | 65 | 142.90 | 285.85 | 15:09 | 210.05 | +1,267.50 | Time exit 15:10 |
 
-Running capital: ₹50,000
+Running capital: ₹51,267.50 (after 19 Oct)
 
 ## 2026-10-19 (Monday)
 
@@ -42,3 +42,11 @@ Bank Nifty 55,461.15: inside range, WAIT. No new entries after 13:30, so no Bank
 14:20 check-in: NIFTY 22950 PE = 210.70 (index 22,868.00). HOLD. Open P&L +₹1,310.
 
 14:49 check-in: NIFTY 22950 PE = 210.35 (index 22,863.00). HOLD. Open P&L +₹1,287.
+
+15:09 exit: NIFTY 22950 PE sold at 210.05 (index 22,855.15). P&L +₹1,267.50 (+10.2% on premium).
+
+### Day summary, 19 Oct 2026
+- Trades: 1 (Nifty PE). Bank Nifty never left its opening range, so no trade.
+- Day P&L: +₹1,267.50. Running capital ₹51,267.50 (+2.5%).
+- Neither stop-loss nor target was hit; the trade closed on the time rule.
+- Caveats: one trade proves nothing; brokerage/taxes ignored (roughly ₹50-100 per round trip in real life); premiums from NSE's public option chain at check-in times.
