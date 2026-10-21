@@ -5,9 +5,12 @@
 #   powershell -ExecutionPolicy Bypass -File .\omniroute_windows.ps1
 # Also add OmniRoute to Claude Desktop as an MCP server:
 #   powershell -ExecutionPolicy Bypass -File .\omniroute_windows.ps1 -ClaudeDesktop -ApiKey "<your OmniRoute API key>"
+# By default the server only listens on this PC (127.0.0.1) and requires an API key.
+# Pass -AllowNetwork to skip that and keep OmniRoute's open defaults.
 
 param(
     [switch]$ClaudeDesktop,
+    [switch]$AllowNetwork,
     [string]$ApiKey = "",
     [int]$Port = 20128
 )
@@ -54,8 +57,34 @@ if ($LASTEXITCODE -ne 0) { Write-Host "npm install failed." -ForegroundColor Red
 Refresh-Path
 omniroute --version
 
-# 3. Start the server in its own window (close that window to stop it)
+# 3. Lock the server down: only this PC can reach it, and every API call needs a key
+$envFile = Join-Path $env:USERPROFILE ".omniroute\.env"
+if (-not $AllowNetwork) {
+    Step "Securing OmniRoute (localhost only, API key required)"
+    $settings = [ordered]@{ OMNIROUTE_SERVER_HOST = "127.0.0.1"; REQUIRE_API_KEY = "true" }
+    if (Test-Path $envFile) {
+        Copy-Item $envFile "$envFile.bak" -Force
+        $lines = @(Get-Content $envFile -Encoding UTF8)
+        foreach ($k in $settings.Keys) {
+            $line = "$k=$($settings[$k])"
+            $idx = -1
+            for ($j = 0; $j -lt $lines.Count; $j++) {
+                if ($lines[$j] -match "^\s*#?\s*$k\s*=") { $idx = $j; break }
+            }
+            if ($idx -ge 0) { $lines[$idx] = $line } else { $lines += $line }
+        }
+        [IO.File]::WriteAllLines($envFile, [string[]]$lines, (New-Object Text.UTF8Encoding $false))
+        Write-Host "Updated $envFile (backup: $envFile.bak)"
+    } else {
+        # First run: OmniRoute creates .env itself, so pass the settings to the server process instead
+        foreach ($k in $settings.Keys) { Set-Item -Path "Env:$k" -Value $settings[$k] }
+        Write-Host "Settings applied for this run. Run the script again after the first start to save them to $envFile"
+    }
+}
+
+# 4. Start the server in its own window (close that window to stop it)
 Step "Starting OmniRoute"
+try { & omniroute stop *> $null } catch { }  # stop an already-running instance so the new settings load
 Start-Process -FilePath "cmd.exe" -ArgumentList "/k", "title OmniRoute && omniroute serve"
 
 $url = "http://localhost:$Port"
@@ -80,13 +109,12 @@ Write-Host "  API base:  $url/v1"
 Start-Process $url
 
 # Dashboard password lives in INITIAL_PASSWORD in OmniRoute's .env
-$envFile = Join-Path $env:USERPROFILE ".omniroute\.env"
 if (Test-Path $envFile) {
     Write-Host "  Login password: INITIAL_PASSWORD in $envFile (change it after logging in)"
 }
 Write-Host "  API key: Dashboard -> Endpoints"
 
-# 4. Optional: register OmniRoute as an MCP server in Claude Desktop
+# 5. Optional: register OmniRoute as an MCP server in Claude Desktop
 if ($ClaudeDesktop) {
     Step "Adding OmniRoute to Claude Desktop"
     if (-not $ApiKey) {
